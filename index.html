@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Advice From A Rock</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      gap: 0;
+      background-image: url("Background.png");
+    }
+
+    #bubble-wrapper {
+      position: relative;
+      width: 250px;
+      height: 200px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      align-self: flex-end;
+      margin-right: 250px;
+      margin-bottom: -200px;
+    }
+
+    #bubble-wrapper.visible {
+      opacity: 1;
+    }
+
+    #bubble-img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #bubble-text {
+      position: absolute;
+      font-family: 'Comic Sans MS', cursive;
+      color: #793f05;
+      top: 45%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      font-size: 1.2rem;
+      text-align: center;
+      width: 60%;
+    }
+
+    #rock {
+      width: 600px;
+      margin:0;
+      margin-bottom: -150px;
+
+    }
+
+    .container {
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      background-color: beige;
+      color: #793f05;
+      font-size: large;
+      border: 3px dashed #793f05;
+      border-radius: 16px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    button {
+      display: block;
+      margin-top: 10px;
+      padding: 14px 36px;
+      font-size: 1.4rem;
+      font-family: 'Comic Sans MS', cursive;
+      color: blanchedalmond;
+      background-color: rgb(216, 96, 96);
+      color: white;
+      border: 3px groove saddlebrown;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bubble-wrapper">
+    <img src="bubble.png" id="bubble-img" />
+    <span id="bubble-text"></span>
+  </div>
+
+  <img src="mr rock.png" id="rock" />
+
+  <div class="container">
+    <textarea id="problem" placeholder="Tell Mr. Rock Your Problem"></textarea>
+    <button id="submit">Seek Mr Rock's Wisdom</button>
+  </div>
+
+  <script>
+    const button = document.getElementById("submit");
+    const bubbleWrapper = document.getElementById("bubble-wrapper");
+    const bubbleText = document.getElementById("bubble-text");
+
+    const responses = [
+      "...",
+      "hmm",
+      "🪨",
+      "(Mr Rock says nothing)",
+      "........",
+      "*stares at you* (rocks dont speak)",
+      "(a gentle breeze passes by, Rocks cant speak)",
+      "^-^",
+      ". . ."
+    ];
+
+    button.addEventListener("click", function() {
+      const problem = document.getElementById("problem").value;
+
+      if (!problem.trim()) {
+        alert("type a problem dumbo, Mr Rock cant read minds");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Consulting Mr Rock...";
+
+      bubbleText.textContent = "(╭ರ_•́)";
+      bubbleWrapper.classList.add("visible");
+
+      setTimeout(function() {
+        const random = responses[Math.floor(Math.random() * responses.length)];
+        bubbleText.textContent = random;
+        button.disabled = false;
+        button.textContent = "Seek Mr Rock's Wisdom";
+      }, 2500);
+
+    });
+  </script>
+
+</body>
+</html>
